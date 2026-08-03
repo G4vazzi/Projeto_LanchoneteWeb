@@ -23,13 +23,16 @@
 
         <div class="card">
 
-            <h3>{{ produto.emoji }} {{ produto.nome }}</h3>
+         <img src="{{ url_for('static', filename='img/' + produto.imagem) }}"
+         alt="{{ produto.nome }}">
 
-            <p>{{ produto.descricao }}</p>
+         <h3>{{ produto.nome }}</h3>
 
-            <span>R$ {{ "%.2f"|format(produto.preco) }}</span>
+         <p>{{ produto.descricao }}</p>
 
-            <button>Adicionar</button>
+         <span>R$ {{ "%.2f"|format(produto.preco) }}</span>
+
+         <button>Adicionar</button>
 
         </div>
 
