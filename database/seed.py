@@ -1,3 +1,8 @@
+import sqlite3
+
+conexao = sqlite3.connect("database.db")
+cursor = conexao.cursor()
+
 produtos = [
     {
         "id": 1,
@@ -32,3 +37,21 @@ produtos = [
         "imagem": "Fantastico_Prensado.jpg"
     }
 ]
+
+for produto in produtos:
+
+    cursor.execute("""
+    INSERT INTO produtos
+    (nome, descricao, preco, imagem)
+    VALUES (?, ?, ?, ?)
+    """, (
+        produto["nome"],
+        produto["descricao"],
+        produto["preco"],
+        produto["imagem"]
+    ))
+
+conexao.commit()
+conexao.close()
+
+print("Produtos cadastrados com sucesso!")

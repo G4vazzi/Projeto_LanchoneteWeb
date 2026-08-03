@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+<h2>Meu Carrinho</h2>
+
+{% for produto in produtos %}
+
+<div class="card">
+
+    <img src="{{ url_for('static', filename='img/' + produto.imagem) }}">
+
+    <h3>{{ produto.nome }}</h3>
+
+    <p>{{ produto.descricao }}</p>
+
+    <span>R$ {{ "%.2f"|format(produto.preco) }}</span>
+
+</div>
+
+{% endfor %}
+
+<h2>Total: R$ {{ "%.2f"|format(total) }}</h2>
+
+{% endblock %}

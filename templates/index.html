@@ -23,16 +23,19 @@
 
         <div class="card">
 
-         <img src="{{ url_for('static', filename='img/' + produto.imagem) }}"
-         alt="{{ produto.nome }}">
+             <img src="{{ url_for('static', filename='img/' + produto.imagem) }}">
 
-         <h3>{{ produto.nome }}</h3>
+             <h3>{{ produto.nome }}</h3>
 
-         <p>{{ produto.descricao }}</p>
+             <p>{{ produto.descricao }}</p>
 
-         <span>R$ {{ "%.2f"|format(produto.preco) }}</span>
+             <span>
+                 R$ {{ "%.2f"|format(produto.preco) }}
+             </span>
 
-         <button>Adicionar</button>
+             <a href="{{ url_for('adicionar', id_produto=produto.id) }}">
+                 <button>Adicionar</button>
+             </a>
 
         </div>
 
