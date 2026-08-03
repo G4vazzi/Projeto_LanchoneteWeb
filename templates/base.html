@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Fabuloso Hot Dog</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>🌭 Fabuloso Hot Dog</h1>
+
+    <p>Os melhores hot dogs da cidade!</p>
+
+</header>
+
+ <nav>
+
+        <a href="#">Home</a>
+        <a href="#">Cardápio</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+        <a href="#">Login</a>
+        <a href="#">🛒</a>
+
+    </nav>
+
+{% block conteudo %}
+
+{% endblock %}
+
+<footer>
+
+    <p>© 2026 Fabuloso Hot Dog</p>
+
+</footer>
+
+</body>
+</html>

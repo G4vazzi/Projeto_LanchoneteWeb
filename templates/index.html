@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+<section class="banner">
+
+    <h2>Bem-vindo!</h2>
+
+    <p>Venha experimentar nossos hambúrgueres artesanais.</p>
+
+    <button>Ver Cardápio</button>
+
+</section>
+
+
+<section class="produtos">
+
+    <h2>Nosso Cardápio</h2>
+
+    <div class="cards">
+
+        {% for produto in produtos %}
+
+        <div class="card">
+
+            <h3>{{ produto.emoji }} {{ produto.nome }}</h3>
+
+            <p>{{ produto.descricao }}</p>
+
+            <span>R$ {{ "%.2f"|format(produto.preco) }}</span>
+
+            <button>Adicionar</button>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}
