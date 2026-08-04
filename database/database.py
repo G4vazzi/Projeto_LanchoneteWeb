@@ -133,3 +133,28 @@ def buscar_admin(usuario):
     conexao.close()
 
     return admin
+
+def cadastrar_admin(nome, usuario, senha):
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+
+        INSERT INTO administradores
+        (nome, usuario, senha)
+
+        VALUES (?, ?, ?)
+
+    """, (
+
+        nome,
+        usuario,
+        senha
+
+    ))
+
+    conexao.commit()
+
+    conexao.close()

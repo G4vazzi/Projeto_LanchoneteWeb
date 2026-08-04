@@ -4,6 +4,7 @@ conexao = sqlite3.connect("database.db")
 
 cursor = conexao.cursor()
 
+# Tabela de produtos
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS produtos(
 
@@ -20,12 +21,7 @@ CREATE TABLE IF NOT EXISTS produtos(
 )
 """)
 
-conexao.commit()
-
-conexao.close()
-
-print("Banco criado com sucesso!")
-
+# Tabela de administradores
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS administradores(
 
@@ -33,7 +29,15 @@ CREATE TABLE IF NOT EXISTS administradores(
 
     usuario TEXT UNIQUE NOT NULL,
 
-    senha TEXT NOT NULL
+    senha TEXT NOT NULL,
+
+    nome TEXT NOT NULL
 
 )
 """)
+
+conexao.commit()
+
+conexao.close()
+
+print("Banco criado com sucesso!")

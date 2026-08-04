@@ -1,4 +1,11 @@
-from flask import (Flask, render_template, session, redirect, request)
+from flask import (
+    Flask, 
+    render_template, 
+    session, 
+    redirect, 
+    request,
+    flash
+    )
 
 from database.database import (
     listar_produtos, 
@@ -6,7 +13,8 @@ from database.database import (
     adicionar_produto, 
     atualizar_produto,
     excluir_produto,
-    buscar_admin
+    buscar_admin,
+    cadastrar_admin
     )
 
 import os; from werkzeug.utils import (secure_filename)
@@ -213,11 +221,13 @@ def login():
 
         admin = buscar_admin(usuario)
 
-        if admin and admin["senha"] == senha:
+        if admin:
 
-            session["admin"] = admin["usuario"]
+            if admin["senha"] == senha:
 
-            return redirect("/admin")
+                session["admin"] = admin["nome"]
+
+                return redirect("/admin")
 
         return render_template(
             "login.html",
@@ -231,7 +241,30 @@ def logout():
 
     session.pop("admin", None)
 
+    flash("Logout reakizado com sucesso! ")
+
     return redirect("/")
+
+@app.route("/admin/cadastrar", methods=["GET", "POST"])
+def cadastrar_administrador():
+
+    if request.method == "POST":
+
+        nome = request.form["nome"]
+
+        usuario = request.form["usuario"]
+
+        senha = request.form["senha"]
+
+        cadastrar_admin(
+            nome,
+            usuario,
+            senha
+        )
+
+        return redirect("/login")
+
+    return render_template("cadastrar_admin.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -553,3 +553,43 @@ footer{
     background:#c62828;
 
 }
+
+.usuario{
+
+    color:white;
+
+    margin-left:20px;
+
+    font-weight:bold;
+
+}
+
+.erro{
+
+    margin-top:20px;
+
+    background:#ffdddd;
+
+    color:#b00000;
+
+    padding:15px;
+
+    border-radius:8px;
+
+}
+
+.flash{
+
+    width:90%;
+
+    margin:20px auto;
+
+    background:#d4edda;
+
+    color:#155724;
+
+    padding:15px;
+
+    border-radius:8px;
+
+}

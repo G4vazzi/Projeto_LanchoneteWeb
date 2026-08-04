@@ -4,9 +4,16 @@
 
 <div class="container-form">
 
-<h1>Login</h1>
+<h1>Cadastrar Administrador</h1>
 
 <form method="POST">
+
+<label>Nome</label>
+
+<input
+type="text"
+name="nome"
+required>
 
 <label>Usuário</label>
 
@@ -24,19 +31,9 @@ required>
 
 <button>
 
-Entrar
+Cadastrar
 
 </button>
-
-{% if erro %}
-
-<div class="erro">
-
-{{ erro }}
-
-</div>
-
-{% endif %}
 
 </form>
 
