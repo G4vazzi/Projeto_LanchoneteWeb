@@ -91,6 +91,16 @@ def finalizar():
 
     return render_template("pedido_realizado.html")
 
+@app.route("/admin")
+def admin():
+
+    produtos = listar_produtos()
+
+    return render_template(
+        "admin.html",
+        produtos=produtos
+    )
+
 
 if __name__ == "__main__":
     app.run(debug=True)
