@@ -6,7 +6,7 @@
 
     <h1>Painel Administrativo</h1>
 
-    <a class="btn-novo" href="#">
+    <a class="btn-novo" href="{{ url_for('novo_produto') }}">
        + Novo Produto
     </a>
 
@@ -39,9 +39,18 @@
 
                 <td>
 
-                    <button>Editar</button>
+                    <a href="{{ url_for('editar_produto', id_produto=produto.id) }}">
+                        <button>Editar</button>
+                    </a>
 
-                    <button>Excluir</button>
+                    <a href="{{ url_for('excluir', id_produto=produto.id) }}"
+                       onclick="return confirm('Deseja realmente excluir este produto?')">
+
+                         <button class="btn-excluir">
+                             Excluir
+                         </button>
+
+                    </a>
 
                 </td>
 

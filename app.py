@@ -1,9 +1,21 @@
-from flask import Flask, render_template, session, redirect
-from database.database import listar_produtos, buscar_produto_por_id
+from flask import (Flask, render_template, session, redirect, request)
+
+from database.database import (
+    listar_produtos, 
+    buscar_produto_por_id, 
+    adicionar_produto, 
+    atualizar_produto,
+    excluir_produto
+    )
+
+import os; from werkzeug.utils import (secure_filename)
 
 app = Flask(__name__)
 app.secret_key = "Gato Preto"
 
+UPLOAD_FOLDER = "static/uploads"
+
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 @app.route("/")
 def inicio():
@@ -100,6 +112,91 @@ def admin():
         "admin.html",
         produtos=produtos
     )
+
+@app.route("/admin/novo", methods=["GET", "POST"])
+def novo_produto():
+
+    if request.method == "POST":
+
+        nome = request.form["nome"]
+        descricao = request.form["descricao"]
+        preco = float(request.form["preco"])
+        imagem = request.files["imagem"]
+
+        _, extensao = os.path.splitext(imagem.filename)
+        nome_imagem = secure_filename(nome.lower().replace(" ", "_")) + extensao
+
+        imagem.save(
+            os.path.join(
+                app.config["UPLOAD_FOLDER"],
+                nome_imagem
+            )
+        )
+
+        adicionar_produto(
+            nome,
+            descricao,
+            preco,
+            nome_imagem
+        )
+
+        return redirect("/admin")
+
+    return render_template("novo_produto.html")
+
+@app.route("/admin/editar/<int:id_produto>", methods=["GET", "POST"])
+def editar_produto(id_produto):
+
+    produto = buscar_produto_por_id(id_produto)
+
+    if request.method == "POST":
+
+        nome = request.form["nome"]
+        descricao = request.form["descricao"]
+        preco = float(request.form["preco"])
+
+        imagem = request.files["imagem"]
+
+        if imagem.filename != "":
+
+            _, extensao = os.path.splitext(imagem.filename)
+
+            nome_imagem = secure_filename(
+                nome.lower().replace(" ", "_")
+            ) + extensao
+
+            imagem.save(
+                os.path.join(
+                    app.config["UPLOAD_FOLDER"],
+                    nome_imagem
+                )
+            )
+
+        else:
+
+            nome_imagem = produto["imagem"]
+
+        atualizar_produto(
+            id_produto,
+            nome,
+            descricao,
+            preco,
+            nome_imagem
+        )
+
+        return redirect("/admin")
+
+    return render_template(
+        "editar_produto.html",
+        produto=produto
+    )
+
+@app.route("/admin/excluir/<int:id_produto>")
+def excluir(id_produto):
+
+    excluir_produto(id_produto)
+
+    return redirect("/admin")
 
 
 if __name__ == "__main__":
