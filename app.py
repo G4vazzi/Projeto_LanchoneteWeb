@@ -69,6 +69,28 @@ def carrinho():
         total=total
     )
 
+@app.route("/remover/<int:id_produto>")
+def remover(id_produto):
+
+    if "carrinho" in session:
+
+        carrinho = session["carrinho"]
+
+        if id_produto in carrinho:
+
+            carrinho.remove(id_produto)
+
+            session["carrinho"] = carrinho
+
+    return redirect("/carrinho")
+
+@app.route("/finalizar")
+def finalizar():
+
+    session.pop("carrinho", None)
+
+    return render_template("pedido_realizado.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -20,10 +20,30 @@
 
     <p>Subtotal: R$ {{ "%.2f"|format(item.subtotal) }}</p>
 
+    <a href="{{ url_for('remover', id_produto=item.produto.id) }}">
+    <button>Remover</button>
+</a>
+
 </div>
 
 {% endfor %}
 
 <h2>Total: R$ {{ "%.2f"|format(total) }}</h2>
+
+<a href="{{ url_for('finalizar') }}">
+
+    <button>
+
+        Finalizar Pedido
+
+    </button>
+
+</a>
+
+{% if not itens_carrinho %}
+
+    <p>Seu carrinho está vazio.</p>
+
+{% endif %}
 
 {% endblock %}

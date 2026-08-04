@@ -207,3 +207,27 @@ footer{
     margin-bottom:15px;
 
 }
+
+.pedido{
+
+    text-align:center;
+
+    padding:80px;
+
+}
+
+.pedido h1{
+
+    color:#0a8f3d;
+
+    margin-bottom:20px;
+
+}
+
+.pedido p{
+
+    font-size:20px;
+
+    margin-bottom:30px;
+
+}
