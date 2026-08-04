@@ -36,6 +36,48 @@ CREATE TABLE IF NOT EXISTS administradores(
 )
 """)
 
+# Tabela de pedidos
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS pedidos(
+
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    cliente TEXT NOT NULL,
+
+    telefone TEXT NOT NULL,
+
+    endereco TEXT NOT NULL,
+
+    observacao TEXT,
+
+    total REAL NOT NULL,
+
+    status TEXT DEFAULT 'Recebido'
+
+)
+""")
+
+# Produtos do pedido
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS itens_pedido(
+
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    pedido_id INTEGER NOT NULL,
+
+    produto_id INTEGER NOT NULL,
+
+    quantidade INTEGER NOT NULL,
+
+    preco REAL NOT NULL,
+
+    FOREIGN KEY(pedido_id) REFERENCES pedidos(id),
+
+    FOREIGN KEY(produto_id) REFERENCES produtos(id)
+
+)
+""")
+
 conexao.commit()
 
 conexao.close()

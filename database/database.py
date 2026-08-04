@@ -158,3 +158,63 @@ def cadastrar_admin(nome, usuario, senha):
     conexao.commit()
 
     conexao.close()
+
+def criar_pedido(cliente, telefone, endereco, observacao, total):
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        INSERT INTO pedidos
+        (cliente, telefone, endereco, observacao, total)
+
+        VALUES (?, ?, ?, ?, ?)
+    """, (
+        cliente,
+        telefone,
+        endereco,
+        observacao,
+        total
+    ))
+
+    conexao.commit()
+
+    pedido_id = cursor.lastrowid
+
+    conexao.close()
+
+    return pedido_id
+
+def adicionar_item_pedido(
+    pedido_id,
+    produto_id,
+    quantidade,
+    preco
+):
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        INSERT INTO itens_pedido
+        (
+            pedido_id,
+            produto_id,
+            quantidade,
+            preco
+        )
+
+        VALUES (?, ?, ?, ?)
+
+    """, (
+        pedido_id,
+        produto_id,
+        quantidade,
+        preco
+    ))
+
+    conexao.commit()
+
+    conexao.close()

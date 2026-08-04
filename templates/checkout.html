@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+<div class="container-form">
+
+<h1>Finalizar Pedido</h1>
+
+<form method="POST">
+
+<label>Nome</label>
+
+<input
+type="text"
+name="nome"
+required>
+
+<label>Telefone</label>
+
+<input
+type="text"
+name="telefone"
+required>
+
+<label>Endereço</label>
+
+<input
+type="text"
+name="endereco"
+required>
+
+<label>Observações</label>
+
+<textarea
+name="observacao"
+rows="4"></textarea>
+
+<h2>
+
+Total:
+R$ {{ "%.2f"|format(total) }}
+
+</h2>
+
+<button>
+
+Confirmar Pedido
+
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}

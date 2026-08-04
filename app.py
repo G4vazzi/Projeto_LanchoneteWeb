@@ -14,7 +14,9 @@ from database.database import (
     atualizar_produto,
     excluir_produto,
     buscar_admin,
-    cadastrar_admin
+    cadastrar_admin,
+    criar_pedido,
+    adicionar_item_pedido
     )
 
 import os; from werkzeug.utils import (secure_filename)
@@ -265,6 +267,80 @@ def cadastrar_administrador():
         return redirect("/login")
 
     return render_template("cadastrar_admin.html")
+
+@app.route("/checkout", methods=["GET", "POST"])
+def checkout():
+
+    if "carrinho" not in session or len(session["carrinho"]) == 0:
+        return redirect("/")
+
+    quantidades = {}
+
+    for id_produto in session["carrinho"]:
+
+        if id_produto in quantidades:
+            quantidades[id_produto] += 1
+        else:
+            quantidades[id_produto] = 1
+
+    itens = []
+
+    total = 0
+
+    for id_produto, quantidade in quantidades.items():
+
+        produto = buscar_produto_por_id(id_produto)
+
+        subtotal = produto["preco"] * quantidade
+
+        total += subtotal
+
+        itens.append({
+            "produto": produto,
+            "quantidade": quantidade,
+            "subtotal": subtotal
+        })
+
+    if request.method == "POST":
+
+        nome = request.form["nome"]
+        telefone = request.form["telefone"]
+        endereco = request.form["endereco"]
+        observacao = request.form["observacao"]
+
+        pedido_id = criar_pedido(
+            nome,
+            telefone,
+            endereco,
+            observacao,
+            total
+        )
+
+        for item in itens:
+
+            adicionar_item_pedido(
+                pedido_id,
+                item["produto"]["id"],
+                item["quantidade"],
+                item["produto"]["preco"]
+            )
+
+        session.pop("carrinho", None)
+
+        return redirect("/pedido_realizado")
+
+    return render_template(
+        "checkout.html",
+        itens=itens,
+        total=total
+    )
+
+@app.route("/pedido_realizado")
+def pedido_realizado():
+
+    return render_template(
+        "pedido_realizado.html"
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)

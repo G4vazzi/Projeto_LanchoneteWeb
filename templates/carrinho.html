@@ -12,11 +12,12 @@
 
             <tr>
 
-                <th>Imagem </th>
+                <th>Imagem</th>
                 <th>Nome</th>
-                <th>Descrição</th>
                 <th>Quantidade</th>
-                <th>Preço</th>
+                <th>Preço Unit.</th>
+                <th>Subtotal</th>
+                <th>Ação</th>
 
             </tr>
 
@@ -28,37 +29,51 @@
 
             <tr>
 
-            <td>
-                <img class="img-carrinho"
-                     src="{{ url_for('static', filename='uploads/' + produto.imagem) }}">
-                     alt="{{ item.produto.nome }}"> 
-            </td>
+                <td>
 
-            <td>
-                <strong>{{ item.produto.nome }}</strong>
-            </td>
+                    <img
+                        class="img-carrinho"
+                        src="{{ url_for('static', filename='uploads/' + item.produto.imagem) }}"
+                        alt="{{ item.produto.nome }}">
 
-            <td>
-                {{ item.quantidade }}
-            </td>
+                </td>
 
-            <td>
-                R$ {{ "%.2f"|format(item.produto.preco) }}
-            </td>
+                <td>
 
-            <td>
-                <strong>
-                    R$ {{ "%.2f"|format(item.subtotal) }}
-                </strong>
-            </td>
+                    <strong>{{ item.produto.nome }}</strong>
 
-            <td>
+                </td>
 
-                <a href="{{ url_for('remover', id_produto=item.produto.id) }}">
-                    ❌
-                  </a>
-            </td>
-                
+                <td>
+
+                    {{ item.quantidade }}
+
+                </td>
+
+                <td>
+
+                    R$ {{ "%.2f"|format(item.produto.preco) }}
+
+                </td>
+
+                <td>
+
+                    <strong>
+
+                        R$ {{ "%.2f"|format(item.subtotal) }}
+
+                    </strong>
+
+                </td>
+
+                <td>
+
+                    <a href="{{ url_for('remover', id_produto=item.produto.id) }}">
+                        ❌
+                    </a>
+
+                </td>
+
             </tr>
 
         {% endfor %}
@@ -71,9 +86,13 @@
 
         <h2>Total: R$ {{ "%.2f"|format(total) }}</h2>
 
-        <a href="{{ url_for('finalizar') }}">
+        <a href="{{ url_for('checkout') }}">
 
-            <button>Finalizar Pedido</button>
+            <button>
+
+                Finalizar Pedido
+
+            </button>
 
         </a>
 
