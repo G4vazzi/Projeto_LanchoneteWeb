@@ -2,48 +2,83 @@
 
 {% block conteudo %}
 
-<h2>Meu Carrinho</h2>
+<div class="container-carrinho">
 
-{% for item in itens_carrinho %}
+    <h1>Meu Carrinho</h1>
 
-<div class="card">
+    <table class="tabela-carrinho">
 
-    <img src="{{ url_for('static', filename='img/' + item.produto.imagem) }}">
+        <thead>
 
-    <h3>{{ item.produto.nome }}</h3>
+            <tr>
 
-    <p>{{ item.produto.descricao }}</p>
+                <th>Imagem </th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
 
-    <p>Quantidade: {{ item.quantidade }}</p>
+            </tr>
 
-    <p>Preço Unitário: R$ {{ "%.2f"|format(item.produto.preco) }}</p>
+        </thead>
 
-    <p>Subtotal: R$ {{ "%.2f"|format(item.subtotal) }}</p>
+        <tbody>
 
-    <a href="{{ url_for('remover', id_produto=item.produto.id) }}">
-    <button>Remover</button>
-</a>
+        {% for item in itens_carrinho %}
+
+            <tr>
+
+            <td>
+                <img class="img-carrinho"
+                     src="{{ url_for('static', filename='img/' + item.produto.imagem) }}"
+                     alt="{{ item.produto.nome }}"> 
+            </td>
+
+            <td>
+                <strong>{{ item.produto.nome }}</strong>
+            </td>
+
+            <td>
+                {{ item.quantidade }}
+            </td>
+
+            <td>
+                R$ {{ "%.2f"|format(item.produto.preco) }}
+            </td>
+
+            <td>
+                <strong>
+                    R$ {{ "%.2f"|format(item.subtotal) }}
+                </strong>
+            </td>
+
+            <td>
+
+                <a href="{{ url_for('remover', id_produto=item.produto.id) }}">
+                    ❌
+                  </a>
+            </td>
+                
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    <div class="rodape-carrinho">
+
+        <h2>Total: R$ {{ "%.2f"|format(total) }}</h2>
+
+        <a href="{{ url_for('finalizar') }}">
+
+            <button>Finalizar Pedido</button>
+
+        </a>
+
+    </div>
 
 </div>
-
-{% endfor %}
-
-<h2>Total: R$ {{ "%.2f"|format(total) }}</h2>
-
-<a href="{{ url_for('finalizar') }}">
-
-    <button>
-
-        Finalizar Pedido
-
-    </button>
-
-</a>
-
-{% if not itens_carrinho %}
-
-    <p>Seu carrinho está vazio.</p>
-
-{% endif %}
 
 {% endblock %}
