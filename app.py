@@ -7,6 +7,8 @@ from flask import (
     flash
     )
 
+from routes.loja import loja
+
 from database.database import (
     listar_produtos, 
     buscar_produto_por_id, 
@@ -22,21 +24,12 @@ from database.database import (
 import os; from werkzeug.utils import (secure_filename)
 
 app = Flask(__name__)
+app.register_blueprint(loja)
 app.secret_key = "Gato Preto"
 
 UPLOAD_FOLDER = "static/uploads"
 
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
-
-@app.route("/")
-def inicio():
-
-    produtos = listar_produtos()
-
-    return render_template(
-        "index.html",
-        produtos=produtos
-    )
 
 
 @app.route("/adicionar/<int:id_produto>")
@@ -342,5 +335,7 @@ def pedido_realizado():
         "pedido_realizado.html"
     )
 
+from routes.loja import *
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True) 
