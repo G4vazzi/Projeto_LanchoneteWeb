@@ -4,17 +4,21 @@
 
 <h2>Meu Carrinho</h2>
 
-{% for produto in produtos %}
+{% for item in itens_carrinho %}
 
 <div class="card">
 
-    <img src="{{ url_for('static', filename='img/' + produto.imagem) }}">
+    <img src="{{ url_for('static', filename='img/' + item.produto.imagem) }}">
 
-    <h3>{{ produto.nome }}</h3>
+    <h3>{{ item.produto.nome }}</h3>
 
-    <p>{{ produto.descricao }}</p>
+    <p>{{ item.produto.descricao }}</p>
 
-    <span>R$ {{ "%.2f"|format(produto.preco) }}</span>
+    <p>Quantidade: {{ item.quantidade }}</p>
+
+    <p>Preço Unitário: R$ {{ "%.2f"|format(item.produto.preco) }}</p>
+
+    <p>Subtotal: R$ {{ "%.2f"|format(item.subtotal) }}</p>
 
 </div>
 

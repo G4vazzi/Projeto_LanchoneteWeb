@@ -35,25 +35,37 @@ def adicionar(id_produto):
 @app.route("/carrinho")
 def carrinho():
 
-    produtos_carrinho = []
-
-    total = 0
+    quantidades = {}
 
     if "carrinho" in session:
 
         for id_produto in session["carrinho"]:
+            if id_produto in quantidades:
+                quantidades[id_produto] += 1
+            else:
+                quantidades[id_produto] = 1
 
-            produto = buscar_produto_por_id(id_produto)
+    itens_carrinho = []
 
-            if produto:
+    total = 0
 
-                produtos_carrinho.append(produto)
+    for id_produto, quantidade in quantidades.items():
 
-                total += produto["preco"]
+        produto = buscar_produto_por_id(id_produto)
+
+        subtotal = produto["preco"] * quantidade
+
+        total += subtotal
+
+        itens_carrinho.append({
+            "produto": produto,
+            "quantidade": quantidade,
+            "subtotal": subtotal
+        })
 
     return render_template(
         "carrinho.html",
-        produtos=produtos_carrinho,
+        itens_carrinho=itens_carrinho,
         total=total
     )
 
