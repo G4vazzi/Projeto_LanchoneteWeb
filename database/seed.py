@@ -55,3 +55,19 @@ conexao.commit()
 conexao.close()
 
 print("Produtos cadastrados com sucesso!")
+
+cursor.execute("""
+
+INSERT INTO administradores
+
+(usuario, senha)
+
+VALUES (?,?)
+
+""", (
+
+"admin",
+
+"123456"
+
+))

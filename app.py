@@ -5,7 +5,8 @@ from database.database import (
     buscar_produto_por_id, 
     adicionar_produto, 
     atualizar_produto,
-    excluir_produto
+    excluir_produto,
+    buscar_admin
     )
 
 import os; from werkzeug.utils import (secure_filename)
@@ -106,6 +107,9 @@ def finalizar():
 @app.route("/admin")
 def admin():
 
+    if "admin" not in session:
+        return redirect("/login")
+
     produtos = listar_produtos()
 
     return render_template(
@@ -198,6 +202,36 @@ def excluir(id_produto):
 
     return redirect("/admin")
 
+@app.route("/login", methods=["GET","POST"])
+def login():
+
+    if request.method == "POST":
+
+        usuario = request.form["usuario"]
+
+        senha = request.form["senha"]
+
+        admin = buscar_admin(usuario)
+
+        if admin and admin["senha"] == senha:
+
+            session["admin"] = admin["usuario"]
+
+            return redirect("/admin")
+
+        return render_template(
+            "login.html",
+            erro="Usuário ou senha inválidos."
+        )
+
+    return render_template("login.html")
+
+@app.route("/logout")
+def logout():
+
+    session.pop("admin", None)
+
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True)

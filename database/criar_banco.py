@@ -25,3 +25,15 @@ conexao.commit()
 conexao.close()
 
 print("Banco criado com sucesso!")
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS administradores(
+
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    usuario TEXT UNIQUE NOT NULL,
+
+    senha TEXT NOT NULL
+
+)
+""")

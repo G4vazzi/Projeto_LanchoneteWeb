@@ -111,3 +111,25 @@ def excluir_produto(id_produto):
     conexao.commit()
 
     conexao.close()
+
+def buscar_admin(usuario):
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+
+    SELECT *
+
+    FROM administradores
+
+    WHERE usuario = ?
+
+    """, (usuario,))
+
+    admin = cursor.fetchone()
+
+    conexao.close()
+
+    return admin
