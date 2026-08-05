@@ -34,12 +34,12 @@
     {% if "admin" in session %}
 
         <a href="{{ url_for('admin.painel') }}">Painel</a>
-
+        <a href="{{ url_for('pedidos.listar_pedidos') }}">Pedidos</a>
         <a href="{{ url_for('auth.logout') }}">Sair</a>
 
         <span class="usuario">
             👤 {{ session["admin"] }}
-        </span>
+    </span>
 
     {% else %}
 

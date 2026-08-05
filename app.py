@@ -10,6 +10,7 @@ from flask import (
 from routes.loja import loja
 from routes.auth import auth
 from routes.admin import admin
+from routes.pedidos import pedidos
 
 from database.database import (
     listar_produtos, 
@@ -30,6 +31,7 @@ app = Flask(__name__)
 app.register_blueprint(loja)
 app.register_blueprint(auth)
 app.register_blueprint(admin)
+app.register_blueprint(pedidos)
 
 app.secret_key = "Gato Preto"
 

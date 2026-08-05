@@ -218,3 +218,26 @@ def adicionar_item_pedido(
     conexao.commit()
 
     conexao.close()
+
+def listar_todos_pedidos():
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        SELECT
+            id,
+            cliente
+            telefone,
+            total,
+            status
+        FROM pedidos
+        ORDER BY id DESC
+    """)
+
+    pedidos = cursor.fetchall()
+
+    conexao.close()
+
+    return pedidos
