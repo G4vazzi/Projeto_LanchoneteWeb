@@ -25,7 +25,7 @@ def inicio():
     produtos = listar_produtos()
 
     return render_template(
-        "index.html",
+        "home.html",
         produtos=produtos
     )
 

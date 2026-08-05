@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+<section class="hero">
+
+    <div class="hero-conteudo">
+
+        <h1>🌭 Fabuloso Hot Dog</h1>
+
+        <p>
+
+            O melhor hot dog da cidade,
+            preparado com ingredientes frescos
+            e muito sabor.
+
+        </p>
+
+        <a
+        href="{{ url_for('paginas.cardapio') }}"
+        class="btn-hero">
+
+            Ver Cardápio
+
+        </a>
+
+    </div>
+
+</section>
+
+<section class="banner">
+
+    <h2>Bem-vindo!</h2>
+
+    <p>Venha experimentar nossos hambúrgueres artesanais.</p>
+
+    <button>Ver Cardápio</button>
+
+</section>
+
+
+<section class="produtos">
+
+    <h2>Nosso Cardápio</h2>
+
+    <div class="cards">
+
+        {% for produto in produtos %}
+
+        <div class="card">
+
+             <img src="{{ url_for('static', filename='uploads/' + produto.imagem) }}">
+
+             <h3>{{ produto.nome }}</h3>
+
+             <p>{{ produto.descricao }}</p>
+
+             <span>
+                 R$ {{ "%.2f"|format(produto.preco) }}
+             </span>
+
+             <a href="{{ url_for('loja.adicionar', id_produto=produto.id) }}">
+                 <button>Adicionar</button>
+             </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}
