@@ -38,6 +38,41 @@
 
 </section>
 
+<section class="destaques">
+
+    <h2>⭐ Mais Pedidos</h2>
+
+    <div class="cards-produtos">
+
+        {% for produto in produtos %}
+
+        <div class="card">
+
+            <img
+                src="{{ url_for('static', filename='uploads/' + produto.imagem) }}"
+                alt="{{ produto.nome }}">
+
+            <h3>{{ produto.nome }}</h3>
+
+            <p>{{ produto.descricao }}</p>
+
+            <h4>R$ {{ "%.2f"|format(produto.preco) }}</h4>
+
+            <a
+                href="{{ url_for('loja.adicionar', id_produto=produto.id) }}"
+                class="btn-card">
+
+                Adicionar ao Carrinho
+
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
 
 <section class="produtos">
 

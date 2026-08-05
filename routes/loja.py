@@ -11,7 +11,8 @@ from database.database import (
     listar_produtos,
     buscar_produto_por_id,
     criar_pedido,
-    adicionar_item_pedido
+    adicionar_item_pedido,
+    listar_produtos_destaque
 )
 
 loja = Blueprint("loja", __name__)
@@ -22,11 +23,11 @@ loja = Blueprint("loja", __name__)
 @loja.route("/")
 def inicio():
 
-    produtos = listar_produtos()
+    produtos_destaque = listar_produtos_destaque()
 
     return render_template(
         "home.html",
-        produtos=produtos
+        produtos=produtos_destaque
     )
 
 #Rota para adicionar itens no carrinho

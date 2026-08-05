@@ -1047,3 +1047,49 @@ footer{
     transform:scale(1.05);
 
 }
+
+/* ================= DESTAQUES ================= */
+
+.destaques{
+
+    max-width:1200px;
+    margin:60px auto;
+    text-align:center;
+
+}
+
+.destaques h2{
+
+    font-size:38px;
+    color:#d62828;
+    margin-bottom:40px;
+
+}
+
+.cards-produtos{
+
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+
+}
+
+.btn-card{
+
+    display:inline-block;
+    margin-top:15px;
+    background:#d62828;
+    color:white;
+    padding:12px 25px;
+    text-decoration:none;
+    border-radius:8px;
+    transition:.3s;
+
+}
+
+.btn-card:hover{
+
+    background:#9d0208;
+
+}

@@ -364,3 +364,26 @@ def pesquisar_produtos(nome):
     conexao.close()
 
     return produtos
+
+def listar_produtos_destaque():
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        SELECT
+            id,
+            nome,
+            descricao,
+            preco,
+            imagem
+        FROM produtos
+        LIMIT 3
+    """)
+
+    produtos = cursor.fetchall()
+
+    conexao.close()
+
+    return produtos
