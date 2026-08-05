@@ -2,125 +2,147 @@
 
 {% block conteudo %}
 
-<h1>
+<div class="container-pedido">
 
-Pedido #{{ pedido.id }}
+    <h1>📦 Pedido #{{ pedido.id }}</h1>
 
-</h1>
+    <div class="info-pedido">
 
-<p>
+        <div>
 
-<strong>Cliente:</strong>
+            <strong>Cliente</strong><br>
 
-{{ pedido.cliente }}
+            {{ pedido.cliente }}
 
-</p>
+        </div>
 
-<p>
+        <div>
 
-<strong>Telefone:</strong>
+            <strong>Telefone</strong><br>
 
-{{ pedido.telefone }}
+            {{ pedido.telefone }}
 
-</p>
+        </div>
 
-<p>
+        <div>
 
-<strong>Endereço:</strong>
+            <strong>Endereço</strong><br>
 
-{{ pedido.endereco }}
+            {{ pedido.endereco }}
 
-</p>
+        </div>
 
-<p>
+        <div>
 
-<strong>Observações:</strong>
+            <strong>Observações</strong><br>
 
-{{ pedido.observacao }}
+            {{ pedido.observacao }}
 
-</p>
+        </div>
 
-<p>
-    <strong>Status:</strong>> {{ pedido.status}}
-</p>
+    </div>
 
-<div class="acoes-status">
+    <h3 style="text-align:center;">
 
-    <a href="{{ url_for('pedidos.alterar_status', id_pedido=pedido.id, status='Recebido') }}">
-        🟡 Recebido
-    </a>
+        Status Atual:
+        <strong>{{ pedido.status }}</strong>
 
-    <a href="{{ url_for('pedidos.alterar_status', id_pedido=pedido.id, status='Em preparo') }}">
-        🟠 Em preparo
-    </a>
+    </h3>
 
-    <a href="{{ url_for('pedidos.alterar_status', id_pedido=pedido.id, status='Saiu para entrega') }}">
-        🔵 Saiu para entrega
-    </a>
+    <div class="status">
 
-    <a href="{{ url_for('pedidos.alterar_status', id_pedido=pedido.id, status='Entregue') }}">
-        🟢 Entregue
-    </a>
-    
+        <a class="recebido"
+           href="{{ url_for('pedidos.alterar_status', id_pedido=pedido.id, status='Recebido') }}">
+
+            🟡 Recebido
+
+        </a>
+
+        <a class="preparo"
+           href="{{ url_for('pedidos.alterar_status', id_pedido=pedido.id, status='Em preparo') }}">
+
+            🟠 Em preparo
+
+        </a>
+
+        <a class="entrega"
+           href="{{ url_for('pedidos.alterar_status', id_pedido=pedido.id, status='Saiu para entrega') }}">
+
+            🔵 Saiu para entrega
+
+        </a>
+
+        <a class="entregue"
+           href="{{ url_for('pedidos.alterar_status', id_pedido=pedido.id, status='Entregue') }}">
+
+            🟢 Entregue
+
+        </a>
+
+    </div>
+
+    <table class="tabela-itens">
+
+        <thead>
+
+            <tr>
+
+                <th>Imagem</th>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Valor Unitário</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for item in itens %}
+
+            <tr>
+
+                <td>
+
+                    <img
+                        class="img-item"
+                        src="{{ url_for('static', filename='uploads/' + item.imagem) }}">
+
+                </td>
+
+                <td>
+
+                    <strong>{{ item.nome }}</strong>
+
+                </td>
+
+                <td>
+
+                    {{ item.quantidade }}
+
+                </td>
+
+                <td>
+
+                    R$ {{ "%.2f"|format(item.preco) }}
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    <div class="total-pedido">
+
+        Total:
+        R$ {{ "%.2f"|format(pedido.total) }}
+
+    </div>
+
 </div>
-
-<hr>
-
-<h2>Itens</h2>
-
-<table>
-
-<tr>
-
-<th>Imagem</th>
-<th>Produto</th>
-<th>Quantidade</th>
-<th>Preço</th>
-
-</tr>
-
-{% for item in itens %}
-
-<tr>
-
-<td>
-
-<img
-width="80"
-src="{{ url_for('static', filename='uploads/' + item.imagem) }}">
-
-</td>
-
-<td>
-
-{{ item.nome }}
-
-</td>
-
-<td>
-
-{{ item.quantidade }}
-
-</td>
-
-<td>
-
-R$ {{ "%.2f"|format(item.preco) }}
-
-</td>
-
-</tr>
-
-{% endfor %}
-
-</table>
-
-<h2>
-
-Total
-
-R$ {{ "%.2f"|format(pedido.total) }}
-
-</h2>
 
 {% endblock %}

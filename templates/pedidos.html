@@ -2,57 +2,84 @@
 
 {% block conteudo %}
 
-<h1>Pedidos</h1>
+<div class="container-pedidos">
 
-<table>
+    <h1>📦 Pedidos</h1>
 
-    <tr>
+    <table class="tabela-pedidos">
 
-        <th>ID</th>
-        <th>Cliente</th>
-        <th>Telefone</th>
-        <th>Total</th>
-        <th>Status</th>
-        <th>Ações</th>
+        <thead>
 
-    </tr>
+            <tr>
 
-    {% for pedido in pedidos %}
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Telefone</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Ações</th>
 
-    <tr>
+            </tr>
 
-        <td>{{ pedido.id }}</td>
+        </thead>
 
-        <td>{{ pedido.cliente }}</td>
+        <tbody>
 
-        <td>{{ pedido.telefone }}</td>
+            {% for pedido in pedidos %}
 
-        <td>
+            <tr>
 
-            R$ {{ "%.2f"|format(pedido.total) }}
+                <td>#{{ pedido.id }}</td>
 
-        </td>
+                <td>{{ pedido.cliente }}</td>
 
-        <td>
+                <td>{{ pedido.telefone }}</td>
 
-            {{ pedido.status }}
+                <td>
+                    <strong>
+                        R$ {{ "%.2f"|format(pedido.total) }}
+                    </strong>
+                </td>
 
-        </td>
-        
-        <td>
+                <td>
 
-        <a href="{{ url_for('pedidos.visualizar_pedido', id_pedido=pedido.id) }}">
+                    {% if pedido.status == "Recebido" %}
+                        <span class="badge recebido">🟡 {{ pedido.status }}</span>
 
-            Ver Pedido
+                    {% elif pedido.status == "Em preparo" %}
+                        <span class="badge preparo">🟠 {{ pedido.status }}</span>
 
-        </a>
-        
-        </td>
+                    {% elif pedido.status == "Saiu para entrega" %}
+                        <span class="badge entrega">🔵 {{ pedido.status }}</span>
 
-    </tr>
+                    {% elif pedido.status == "Entregue" %}
+                        <span class="badge entregue">🟢 {{ pedido.status }}</span>
 
-    {% endfor %}
+                    {% else %}
+                        {{ pedido.status }}
+                    {% endif %}
 
-</table>
+                </td>
+
+                <td>
+
+                    <a class="btn-ver"
+                       href="{{ url_for('pedidos.visualizar_pedido', id_pedido=pedido.id) }}">
+
+                        Ver Pedido
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
 
 {% endblock %}

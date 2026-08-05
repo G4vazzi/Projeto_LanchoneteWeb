@@ -791,3 +791,39 @@ footer{
     background:#2a9d8f;
 
 }
+
+/* BADGES DOS STATUS */
+
+.badge{
+
+    color:white;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:14px;
+    font-weight:bold;
+
+}
+
+.badge.recebido{
+
+    background:#f4b400;
+
+}
+
+.badge.preparo{
+
+    background:#fb8500;
+
+}
+
+.badge.entrega{
+
+    background:#219ebc;
+
+}
+
+.badge.entregue{
+
+    background:#2a9d8f;
+
+}
