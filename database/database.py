@@ -340,3 +340,27 @@ def dashboard():
         "produtos": total_produtos,
         "clientes": total_clientes
     }
+
+def pesquisar_produtos(nome):
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        SELECT
+            id,
+            nome,
+            descricao,
+            preco,
+            imagem
+        FROM produtos
+        WHERE nome LIKE ?
+        ORDER BY nome
+    """, (f"%{nome}%",))
+
+    produtos = cursor.fetchall()
+
+    conexao.close()
+
+    return produtos

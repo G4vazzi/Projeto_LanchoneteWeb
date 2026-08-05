@@ -5,7 +5,7 @@
 <div class="container-admin">
 
     <h1>Painel Administrativo</h1>
-    
+
 <div class="cards-dashboard">
 
     <div class="card-dashboard">
@@ -50,6 +50,22 @@
     <a class="btn-novo" href="{{ url_for('admin.novo_produto') }}">
        + Novo Produto
     </a>
+
+<form method="GET" class="pesquisa">
+
+    <input
+        type="text"
+        name="pesquisa"
+        placeholder="Pesquisar produto..."
+        value="{{ pesquisa }}">
+
+    <button type="submit">
+
+        🔍 Buscar
+
+    </button>
+
+</form>
 
     <table class="tabela-admin">
 

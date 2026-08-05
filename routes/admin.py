@@ -25,13 +25,21 @@ def painel():
     if "admin" not in session:
         return redirect(url_for("auth.login"))
 
-    produtos = listar_produtos()
+    pesquisa = request.args.get("pesquisa", "")
+
+    if pesquisa:
+        produtos = pesquisar_produtos(pesquisa)
+
+    else:
+        produtos = listar_produtos()
+
     dados = dashboard()
 
     return render_template(
         "admin.html",
         produtos=produtos,
-        dashboard=dados
+        dashboard=dados,
+        pesquisa=pesquisa
     )
 
 #Rota para adicionar um novo produto
