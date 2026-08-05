@@ -68,7 +68,7 @@
 
                 <td>
 
-                    <a href="{{ url_for('remover', id_produto=item.produto.id) }}">
+                    <a href="{{ url_for('loja.remover', id_produto=item.produto.id) }}">
                         ❌
                     </a>
 
@@ -86,7 +86,7 @@
 
         <h2>Total: R$ {{ "%.2f"|format(total) }}</h2>
 
-        <a href="{{ url_for('checkout') }}">
+        <a href="{{ url_for('loja.checkout') }}">
 
             <button>
 

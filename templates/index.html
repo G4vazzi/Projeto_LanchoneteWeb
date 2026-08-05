@@ -33,7 +33,7 @@
                  R$ {{ "%.2f"|format(produto.preco) }}
              </span>
 
-             <a href="{{ url_for('adicionar', id_produto=produto.id) }}">
+             <a href="{{ url_for('loja.adicionar', id_produto=produto.id) }}">
                  <button>Adicionar</button>
              </a>
 

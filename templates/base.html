@@ -29,13 +29,13 @@
     <a href="#">Sobre</a>
     <a href="#">Contato</a>
 
-    <a href="{{ url_for('carrinho') }}">🛒 Carrinho</a>
+    <a href="{{ url_for('loja.carrinho') }}">🛒 Carrinho</a>
 
     {% if "admin" in session %}
 
-        <a href="{{ url_for('admin') }}">Painel</a>
+        <a href="{{ url_for('admin.painel') }}">Painel</a>
 
-        <a href="{{ url_for('logout') }}">Sair</a>
+        <a href="{{ url_for('auth.logout') }}">Sair</a>
 
         <span class="usuario">
             👤 {{ session["admin"] }}
@@ -43,7 +43,7 @@
 
     {% else %}
 
-        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('auth.login') }}">Login</a>
 
     {% endif %}
 
