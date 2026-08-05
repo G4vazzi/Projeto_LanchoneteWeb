@@ -49,7 +49,7 @@ def logout():
 
     session.pop("admin", None)
 
-    flash("Logout reakizado com sucesso! ")
+    flash("Logout realizado com sucesso! ")
 
     return redirect("/")
 

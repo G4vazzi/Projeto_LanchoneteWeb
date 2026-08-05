@@ -55,7 +55,7 @@ def buscar_produto_por_id(id_produto):
 
     return produto
 
-def adicionar_produto(nome, descricao, preco, imagem):
+def adicionar_produto(nome, descricao, preco, imagem, categoria):
 
     conexao = conectar()
 
@@ -63,9 +63,9 @@ def adicionar_produto(nome, descricao, preco, imagem):
 
     cursor.execute("""
         INSERT INTO produtos
-        (nome, descricao, preco, imagem)
-        VALUES (?, ?, ?, ?)
-    """, (nome, descricao, preco, imagem))
+        (nome, descricao, preco, imagem, categoria)
+        VALUES (?, ?, ?, ?, ?)
+    """, (nome, descricao, preco, imagem, categoria))
 
     conexao.commit()
 
@@ -387,3 +387,75 @@ def listar_produtos_destaque():
     conexao.close()
 
     return produtos
+
+def pesquisar_produtos(texto):
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+
+        SELECT
+            id,
+            nome,
+            descricao,
+            preco,
+            imagem
+
+        FROM produtos
+
+        WHERE nome LIKE ?
+
+        ORDER BY nome
+
+    """, (f"%{texto}%",))
+
+    produtos = cursor.fetchall()
+
+    conexao.close()
+
+    return produtos
+
+def listar_produtos_categoria(categoria):
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        SELECT
+            id,
+            nome,
+            descricao,
+            preco,
+            imagem,
+            categoria
+        FROM produtos
+        WHERE categoria = ?
+        ORDER BY nome
+    """, (categoria,))
+
+    produtos = cursor.fetchall()
+
+    conexao.close()
+
+    return produtos
+
+def listar_categorias():
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        SELECT DISTINCT categoria
+        FROM produtos
+        ORDER BY categoria
+    """)
+
+    categorias = cursor.fetchall()
+
+    conexao.close()
+
+    return categorias

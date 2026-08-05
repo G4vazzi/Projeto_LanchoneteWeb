@@ -2,6 +2,94 @@
 
 {% block conteudo %}
 
-<h1>Cardápio</h1>
+<section class="container-cardapio">
+
+    <h1>🍔 Nosso Cardápio</h1>
+
+    <p class="subtitulo">
+
+        Escolha seu lanche favorito.
+
+    </p>
+
+    <form class="pesquisa-cardapio">
+
+    <input
+        type="text"
+        name="pesquisa"
+        placeholder="Pesquisar produto..."
+        value="{{ pesquisa }}">
+
+    <button>
+
+        🔍 Buscar
+
+    </button>
+
+</form>
+
+<div class="categorias">
+
+    <a 
+        href="{{ url_for('paginas.cardapio') }}"
+        class="{% if not categoria %}ativo{% endif %}">
+
+        Todos
+
+    </a>
+
+    {% for cat in categorias %}
+
+    <a
+        href="{{ url_for('paginas.cardapio', categoria=cat.categoria) }}"
+        class="{% if categoria_selecionada == cat.categoria %}ativo{% endif %}">
+
+        {{ cat.categoria }}
+
+    </a>
+
+    {% endfor %}
+
+</div>
+
+    <div class="cards-produtos">
+
+        {% for produto in produtos %}
+
+        <div class="card">
+
+            <img
+                src="{{ url_for('static', filename='uploads/' + produto.imagem) }}"
+                alt="{{ produto.nome }}">
+
+            <h3>{{ produto.nome }}</h3>
+
+            <p>
+
+                {{ produto.descricao }}
+
+            </p>
+
+            <h4>
+
+                R$ {{ "%.2f"|format(produto.preco) }}
+
+            </h4>
+
+            <a
+                href="{{ url_for('loja.adicionar', id_produto=produto.id) }}"
+                class="btn-card">
+
+                🛒 Adicionar
+
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
 
 {% endblock %}

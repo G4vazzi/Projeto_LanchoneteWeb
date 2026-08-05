@@ -53,6 +53,7 @@ def novo_produto():
         descricao = request.form["descricao"]
         preco = float(request.form["preco"])
         imagem = request.files["imagem"]
+        categoria = request.form["categoria"]
 
         _, extensao = os.path.splitext(imagem.filename)
         nome_imagem = secure_filename(nome.lower().replace(" ", "_")) + extensao
@@ -68,7 +69,8 @@ def novo_produto():
             nome,
             descricao,
             preco,
-            nome_imagem
+            nome_imagem,
+            categoria
         )
 
         return redirect(url_for("admin.painel"))
