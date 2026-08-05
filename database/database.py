@@ -1,5 +1,11 @@
 import sqlite3
 
+from werkzeug.security import (
+    generate_password_hash,
+    check_password_hash
+    
+)
+
 
 def conectar():
     conexao = sqlite3.connect("database.db")
@@ -459,3 +465,94 @@ def listar_categorias():
     conexao.close()
 
     return categorias
+
+def criar_tabela_clientes():
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS clientes (
+
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+            nome TEXT NOT NULL,
+
+            email TEXT NOT NULL UNIQUE,
+
+            telefone TEXT NOT NULL,
+
+            senha TEXT NOT NULL,
+
+            endereco TEXT
+
+        )
+    """)
+
+    conexao.commit()
+
+    conexao.close()
+
+def cadastrar_cliente(nome, email, telefone, senha, endereco):
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        INSERT INTO clientes(
+            nome,
+            email,
+            telefone,
+            senha,
+            endereco
+        )
+        VALUES (?, ?, ?, ?, ?)
+    """, (
+        nome,
+        email,
+        telefone,
+        senha,
+        endereco
+    ))
+
+    conexao.commit()
+
+    conexao.close()
+
+def buscar_cliente_por_email(email):
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        SELECT *
+        FROM clientes
+        WHERE email = ?
+    """, (email,))
+
+    cliente = cursor.fetchone()
+
+    conexao.close()
+
+    return cliente
+
+def buscar_cliente_por_id(id_cliente):
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        SELECT *
+        FROM clientes
+        WHERE id = ?
+    """, (id_cliente,))
+
+    cliente = cursor.fetchone()
+
+    conexao.close()
+
+    return cliente

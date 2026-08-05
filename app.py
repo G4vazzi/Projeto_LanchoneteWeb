@@ -12,6 +12,7 @@ from routes.auth import auth
 from routes.admin import admin
 from routes.pedidos import pedidos
 from routes.paginas import paginas
+from routes.clientes import clientes
 
 from database.database import (
     listar_produtos, 
@@ -34,6 +35,7 @@ app.register_blueprint(auth)
 app.register_blueprint(admin)
 app.register_blueprint(pedidos)
 app.register_blueprint(paginas)
+app.register_blueprint(clientes)
 
 app.secret_key = "Gato Preto"
 
