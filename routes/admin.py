@@ -26,10 +26,12 @@ def painel():
         return redirect(url_for("auth.login"))
 
     produtos = listar_produtos()
+    dados = dashboard()
 
     return render_template(
         "admin.html",
-        produtos=produtos
+        produtos=produtos,
+        dashboard=dados
     )
 
 #Rota para adicionar um novo produto

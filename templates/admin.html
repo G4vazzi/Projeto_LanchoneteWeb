@@ -5,6 +5,47 @@
 <div class="container-admin">
 
     <h1>Painel Administrativo</h1>
+    
+<div class="cards-dashboard">
+
+    <div class="card-dashboard">
+
+        <h3>📦 Pedidos</h3>
+
+        <span>{{ dashboard.pedidos }}</span>
+
+    </div>
+
+    <div class="card-dashboard">
+
+        <h3>💰 Faturamento</h3>
+
+        <span>
+
+            R$ {{ "%.2f"|format(dashboard.faturamento) }}
+
+        </span>
+
+    </div>
+
+    <div class="card-dashboard">
+
+        <h3>🍔 Produtos</h3>
+
+        <span>{{ dashboard.produtos }}</span>
+
+    </div>
+
+    <div class="card-dashboard">
+
+        <h3>👥 Clientes</h3>
+
+        <span>{{ dashboard.clientes }}</span>
+
+    </div>
+
+</div>
+
 
     <a class="btn-novo" href="{{ url_for('admin.novo_produto') }}">
        + Novo Produto

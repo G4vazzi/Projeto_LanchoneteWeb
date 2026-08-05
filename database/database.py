@@ -313,3 +313,30 @@ def alterar_status_pedido(id_pedido, status):
     conexao.commit()
 
     conexao.close()
+
+def dashboard():
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("SELECT COUNT(*) FROM pedidos")
+    total_pedidos = cursor.fetchone()[0]
+
+    cursor.execute("SELECT SUM(total) FROM pedidos")
+    faturamento = cursor.fetchone()[0] or 0
+
+    cursor.execute("SELECT COUNT(*) FROM produtos")
+    total_produtos = cursor.fetchone()[0]
+
+    cursor.execute("SELECT COUNT(DISTINCT telefone) FROM pedidos")
+    total_clientes = cursor.fetchone()[0]
+
+    conexao.close()
+
+    return {
+        "pedidos": total_pedidos,
+        "faturamento": faturamento,
+        "produtos": total_produtos,
+        "clientes": total_clientes
+    }
