@@ -241,3 +241,75 @@ def listar_todos_pedidos():
     conexao.close()
 
     return pedidos
+
+def buscar_pedido_por_id(id_pedido):
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        SELECT
+            id,
+            cliente,
+            telefone,
+            endereco,
+            observacao,
+            total,
+            status
+        FROM pedidos
+        WHERE id = ?
+    """,(id_pedido,))
+
+    pedido = cursor.fetchone()
+
+    conexao.close()
+
+    return pedido
+
+def listar_itens_pedido(id_pedido):
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        SELECT
+
+            produtos.nome,
+            produtos.imagem,
+
+            itens_pedido.quantidade,
+            itens_pedido.preco
+
+        FROM itens_pedido
+
+        INNER JOIN produtos
+
+            ON produtos.id = itens_pedido.produto_id
+
+        WHERE pedido_id = ?
+
+    """, (id_pedido,))
+
+    itens = cursor.fetchall()
+
+    conexao.close()
+
+    return itens
+
+def alterar_status_pedido(id_pedido, status):
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        UPDATE pedidos
+        SET status = ?
+        WHERE id = ?
+    """, (status, id_pedido))
+
+    conexao.commit()
+
+    conexao.close()

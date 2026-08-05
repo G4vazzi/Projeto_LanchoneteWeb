@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+<h1>
+
+Pedido #{{ pedido.id }}
+
+</h1>
+
+<p>
+
+<strong>Cliente:</strong>
+
+{{ pedido.cliente }}
+
+</p>
+
+<p>
+
+<strong>Telefone:</strong>
+
+{{ pedido.telefone }}
+
+</p>
+
+<p>
+
+<strong>Endereço:</strong>
+
+{{ pedido.endereco }}
+
+</p>
+
+<p>
+
+<strong>Observações:</strong>
+
+{{ pedido.observacao }}
+
+</p>
+
+<p>
+    <strong>Status:</strong>> {{ pedido.status}}
+</p>
+
+<div class="acoes-status">
+
+    <a href="{{ url_for('pedidos.alterar_status', id_pedido=pedido.id, status='Recebido') }}">
+        🟡 Recebido
+    </a>
+
+    <a href="{{ url_for('pedidos.alterar_status', id_pedido=pedido.id, status='Em preparo') }}">
+        🟠 Em preparo
+    </a>
+
+    <a href="{{ url_for('pedidos.alterar_status', id_pedido=pedido.id, status='Saiu para entrega') }}">
+        🔵 Saiu para entrega
+    </a>
+
+    <a href="{{ url_for('pedidos.alterar_status', id_pedido=pedido.id, status='Entregue') }}">
+        🟢 Entregue
+    </a>
+    
+</div>
+
+<hr>
+
+<h2>Itens</h2>
+
+<table>
+
+<tr>
+
+<th>Imagem</th>
+<th>Produto</th>
+<th>Quantidade</th>
+<th>Preço</th>
+
+</tr>
+
+{% for item in itens %}
+
+<tr>
+
+<td>
+
+<img
+width="80"
+src="{{ url_for('static', filename='uploads/' + item.imagem) }}">
+
+</td>
+
+<td>
+
+{{ item.nome }}
+
+</td>
+
+<td>
+
+{{ item.quantidade }}
+
+</td>
+
+<td>
+
+R$ {{ "%.2f"|format(item.preco) }}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<h2>
+
+Total
+
+R$ {{ "%.2f"|format(pedido.total) }}
+
+</h2>
+
+{% endblock %}

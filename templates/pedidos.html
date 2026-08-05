@@ -13,6 +13,7 @@
         <th>Telefone</th>
         <th>Total</th>
         <th>Status</th>
+        <th>Ações</th>
 
     </tr>
 
@@ -36,6 +37,16 @@
 
             {{ pedido.status }}
 
+        </td>
+        
+        <td>
+
+        <a href="{{ url_for('pedidos.visualizar_pedido', id_pedido=pedido.id) }}">
+
+            Ver Pedido
+
+        </a>
+        
         </td>
 
     </tr>

@@ -16,7 +16,7 @@
 
 <header>
 
-    <h1>🌭 Fabuloso Hot Dog</h1>
+    <h1>Fabuloso Hot Dog</h1>
 
     <p>Os melhores hot dogs da cidade!</p>
 
@@ -29,7 +29,7 @@
     <a href="#">Sobre</a>
     <a href="#">Contato</a>
 
-    <a href="{{ url_for('loja.carrinho') }}">🛒 Carrinho</a>
+    <a href="{{ url_for('loja.carrinho') }}">Carrinho</a>
 
     {% if "admin" in session %}
 
@@ -38,7 +38,7 @@
         <a href="{{ url_for('auth.logout') }}">Sair</a>
 
         <span class="usuario">
-            👤 {{ session["admin"] }}
+            {{ session["admin"] }}
     </span>
 
     {% else %}

@@ -593,3 +593,201 @@ footer{
     border-radius:8px;
 
 }
+
+.container-pedidos{
+
+    max-width:1200px;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+}
+
+.container-pedidos h1{
+
+    text-align:center;
+    margin-bottom:30px;
+
+}
+
+.tabela-pedidos{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+.tabela-pedidos th{
+
+    background:#d62828;
+    color:white;
+    padding:15px;
+
+}
+
+.tabela-pedidos td{
+
+    padding:15px;
+    border-bottom:1px solid #eee;
+    text-align:center;
+
+}
+
+.tabela-pedidos tbody tr:hover{
+
+    background:#fafafa;
+
+}
+
+.btn-ver{
+
+    background:#d62828;
+    color:white;
+    padding:8px 18px;
+    border-radius:6px;
+    text-decoration:none;
+    transition:.3s;
+
+}
+
+.btn-ver:hover{
+
+    background:#9d0208;
+
+}
+
+.container-pedido{
+
+    max-width:1100px;
+    margin:40px auto;
+    background:white;
+    padding:35px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+}
+
+.container-pedido h1{
+
+    text-align:center;
+    margin-bottom:35px;
+
+}
+
+.info-pedido{
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+    margin-bottom:35px;
+
+}
+
+.info-pedido div{
+
+    background:#f8f8f8;
+    padding:15px;
+    border-radius:8px;
+
+}
+
+.tabela-itens{
+
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+
+}
+
+.tabela-itens th{
+
+    background:#d62828;
+    color:white;
+    padding:15px;
+
+}
+
+.tabela-itens td{
+
+    padding:15px;
+    border-bottom:1px solid #eee;
+    text-align:center;
+
+}
+
+.tabela-itens tbody tr:hover{
+
+    background:#fafafa;
+
+}
+
+.img-item{
+
+    width:90px;
+    border-radius:10px;
+
+}
+
+.total-pedido{
+
+    text-align:right;
+    margin-top:30px;
+    font-size:28px;
+    font-weight:bold;
+    color:#d62828;
+
+}
+
+.status{
+
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin:30px 0;
+    flex-wrap:wrap;
+
+}
+
+.status a{
+
+    padding:10px 20px;
+    border-radius:8px;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    transition:.3s;
+
+}
+
+.status a:hover{
+
+    transform:translateY(-2px);
+    opacity:.9;
+
+}
+
+.recebido{
+
+    background:#f4b400;
+
+}
+
+.preparo{
+
+    background:#fb8500;
+
+}
+
+.entrega{
+
+    background:#219ebc;
+
+}
+
+.entregue{
+
+    background:#2a9d8f;
+
+}
