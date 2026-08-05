@@ -1093,3 +1093,181 @@ footer{
     background:#9d0208;
 
 }
+
+/* ================= VANTAGENS ================= */
+
+.vantagens{
+
+    max-width:1200px;
+    margin:80px auto;
+    text-align:center;
+
+}
+
+.vantagens h2{
+
+    color:#d62828;
+    font-size:38px;
+    margin-bottom:40px;
+
+}
+
+.cards-vantagens{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+
+}
+
+.card-vantagem{
+
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    transition:.3s;
+
+}
+
+.card-vantagem:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.card-vantagem h3{
+
+    margin-bottom:15px;
+    color:#d62828;
+
+}
+
+.card-vantagem p{
+
+    color:#555;
+    line-height:1.6;
+
+}
+
+/* ================= AVALIAÇÕES ================= */
+
+.avaliacoes{
+
+    max-width:1200px;
+    margin:80px auto;
+    text-align:center;
+
+}
+
+.avaliacoes h2{
+
+    color:#d62828;
+    font-size:38px;
+    margin-bottom:45px;
+
+}
+
+.cards-avaliacoes{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+
+}
+
+.card-avaliacao{
+
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    transition:.3s;
+
+}
+
+.card-avaliacao:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.estrelas{
+
+    font-size:22px;
+    margin-bottom:20px;
+
+}
+
+.card-avaliacao p{
+
+    color:#555;
+    line-height:1.8;
+    font-style:italic;
+    margin-bottom:20px;
+
+}
+
+.card-avaliacao h4{
+
+    color:#d62828;
+
+}
+
+/* ================= CONTATO HOME ================= */
+
+.contato-home{
+
+    max-width:1200px;
+    margin:80px auto;
+    text-align:center;
+
+}
+
+.contato-home h2{
+
+    color:#d62828;
+    font-size:38px;
+    margin-bottom:40px;
+
+}
+
+.info-contato{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+    margin-bottom:40px;
+
+}
+
+.info-card{
+
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+}
+
+.info-card h3{
+
+    color:#d62828;
+    margin-bottom:15px;
+
+}
+
+.info-card p{
+
+    color:#555;
+    line-height:1.7;
+
+}
+
+.mapa{
+
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+}

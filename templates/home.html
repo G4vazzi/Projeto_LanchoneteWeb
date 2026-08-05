@@ -74,33 +74,175 @@
 
 </section>
 
-<section class="produtos">
+<section class="vantagens">
 
-    <h2>Nosso Cardápio</h2>
+    <h2>Por que escolher o Fabuloso Hot Dog?</h2>
 
-    <div class="cards">
+    <div class="cards-vantagens">
 
-        {% for produto in produtos %}
+        <div class="card-vantagem">
 
-        <div class="card">
+            <h3>🚚 Entrega Rápida</h3>
 
-             <img src="{{ url_for('static', filename='uploads/' + produto.imagem) }}">
-
-             <h3>{{ produto.nome }}</h3>
-
-             <p>{{ produto.descricao }}</p>
-
-             <span>
-                 R$ {{ "%.2f"|format(produto.preco) }}
-             </span>
-
-             <a href="{{ url_for('loja.adicionar', id_produto=produto.id) }}">
-                 <button>Adicionar</button>
-             </a>
+            <p>
+                Seu pedido chega quentinho e no menor tempo possível.
+            </p>
 
         </div>
 
-        {% endfor %}
+        <div class="card-vantagem">
+
+            <h3>🌭 Ingredientes Frescos</h3>
+
+            <p>
+                Utilizamos ingredientes selecionados para garantir o melhor sabor.
+            </p>
+
+        </div>
+
+        <div class="card-vantagem">
+
+            <h3>❤️ Atendimento de Qualidade</h3>
+
+            <p>
+                Nossa equipe está sempre pronta para atender você da melhor forma.
+            </p>
+
+        </div>
+
+        <div class="card-vantagem">
+
+            <h3>⭐ Sabor Incomparável</h3>
+
+            <p>
+                Receitas exclusivas que conquistam nossos clientes todos os dias.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="avaliacoes">
+
+    <h2>⭐ O que nossos clientes dizem</h2>
+
+    <div class="cards-avaliacoes">
+
+        <div class="card-avaliacao">
+
+            <div class="estrelas">
+                ⭐⭐⭐⭐⭐
+            </div>
+
+            <p>
+
+                "O melhor cachorro-quente que já comi. Atendimento excelente e entrega muito rápida."
+
+            </p>
+
+            <h4>— Macaco Bumerang</h4>
+
+        </div>
+
+        <div class="card-avaliacao">
+
+            <div class="estrelas">
+                ⭐⭐⭐⭐⭐
+            </div>
+
+            <p>
+
+                "Os ingredientes são muito frescos e o lanche chega sempre quentinho."
+
+            </p>
+
+            <h4>— Macaco Engenheiro</h4>
+
+        </div>
+
+        <div class="card-avaliacao">
+
+            <div class="estrelas">
+                ⭐⭐⭐⭐⭐
+            </div>
+
+            <p>
+
+                "Já pedi várias vezes e nunca me decepcionei. Recomendo para todos."
+
+            </p>
+
+            <h4>— Macaco Ninja</h4>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="contato-home">
+
+    <h2>📍 Venha nos visitar</h2>
+
+    <div class="info-contato">
+
+        <div class="info-card">
+
+            <h3>📍 Endereço</h3>
+
+            <p>
+                Rua Exemplo, 123<br>
+                Centro - Sua Cidade
+            </p>
+
+        </div>
+
+        <div class="info-card">
+
+            <h3>📞 Telefone</h3>
+
+            <p>
+                (11) 99999-9999
+            </p>
+
+        </div>
+
+        <div class="info-card">
+
+            <h3>🕒 Horário</h3>
+
+            <p>
+
+                Segunda a Quinta<br>
+                18:00 às 23:00
+
+                <br><br>
+
+                Sexta e Sábado<br>
+                18:00 às 00:00
+
+                <br><br>
+
+                Domingo<br>
+                18:00 às 22:00
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="mapa">
+
+        <iframe
+            src="https://www.google.com/maps?q=São+Paulo&output=embed"
+            width="100%"
+            height="350"
+            style="border:0;"
+            loading="lazy">
+        </iframe>
 
     </div>
 
