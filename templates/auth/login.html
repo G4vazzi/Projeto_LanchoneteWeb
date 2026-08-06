@@ -4,41 +4,41 @@
 
 <div class="container-form">
 
-<h1>Login</h1>
+    <h1>Login</h1>
 
-<form method="POST">
+    <form method="POST">
 
-<label>Usuário</label>
+        <label>E-mail</label>
 
-<input
-type="text"
-name="usuario"
-required>
+        <input
+            type="email"
+            name="email"
+            required>
 
-<label>Senha</label>
+        <label>Senha</label>
 
-<input
-type="password"
-name="senha"
-required>
+        <input
+            type="password"
+            name="senha"
+            required>
 
-<button>
+        <button>
 
-Entrar
+            Entrar
 
-</button>
+        </button>
 
-{% if erro %}
+        {% if erro %}
 
-<div class="erro">
+            <div class="erro">
 
-{{ erro }}
+                {{ erro }}
 
-</div>
+            </div>
 
-{% endif %}
+         {% endif %} 
 
-</form>
+    </form>
 
 </div>
 

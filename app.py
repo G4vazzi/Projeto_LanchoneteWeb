@@ -20,7 +20,6 @@ from database.database import (
     adicionar_produto, 
     atualizar_produto,
     excluir_produto,
-    buscar_admin,
     cadastrar_admin,
     criar_pedido,
     adicionar_item_pedido

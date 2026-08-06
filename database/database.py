@@ -6,8 +6,13 @@ from werkzeug.security import (
     
 )
 
+import os
 
 def conectar():
+
+    caminho = os.path.abspath("database.db")
+    print(f"Banco utilizado: {caminho}")
+
     conexao = sqlite3.connect("database.db")
     conexao.row_factory = sqlite3.Row
     return conexao
@@ -118,7 +123,7 @@ def excluir_produto(id_produto):
 
     conexao.close()
 
-def buscar_admin(usuario):
+def buscar_admin_por_email(email):
 
     conexao = conectar()
 
@@ -130,9 +135,9 @@ def buscar_admin(usuario):
 
     FROM administradores
 
-    WHERE usuario = ?
+    WHERE email = ?
 
-    """, (usuario,))
+    """, (email,))
 
     admin = cursor.fetchone()
 
@@ -556,3 +561,26 @@ def buscar_cliente_por_id(id_cliente):
     conexao.close()
 
     return cliente
+
+def adicionar_admin(nome, email, senha):
+
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        INSERT INTO administradores (
+            nome,
+            email,
+            senha
+        )
+        VALUES (?, ?, ?)
+    """, (
+        nome,
+        email,
+        senha
+    ))
+
+    conexao.commit()
+
+    conexao.close()
