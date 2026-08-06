@@ -21,7 +21,7 @@ def listar_pedidos():
     pedidos_lista = listar_todos_pedidos()
 
     return render_template(
-        "pedidos.html",
+        "admin/pedidos.html",
         pedidos=pedidos_lista
     )
 
@@ -38,7 +38,7 @@ def visualizar_pedido(id_pedido):
     itens = listar_itens_pedido(id_pedido)
 
     return render_template(
-        "pedido.html",
+        "admin/painel_pedidos.html",
         pedido=pedido,
         itens=itens
     )

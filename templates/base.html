@@ -27,7 +27,6 @@
     <a href="{{ url_for('loja.inicio') }}">Home</a>
     <a href="{{ url_for('paginas.cardapio') }}">Cardápio</a>
     <a href="{{ url_for('loja.carrinho') }}">Carrinho</a>
-    <a href="{{ url_for('clientes.cadastro') }}">Criar Conta</a>
 
     {% if "admin" in session %}
 
@@ -37,11 +36,12 @@
 
         <span class="usuario">
             {{ session["admin"] }}
-    </span>
+        </span>
 
     {% else %}
 
         <a href="{{ url_for('auth.login') }}">Login</a>
+        <a href="{{ url_for('clientes.cadastro') }}">Criar Conta</a>
 
     {% endif %}
 

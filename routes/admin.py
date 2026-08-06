@@ -36,7 +36,7 @@ def painel():
     dados = dashboard()
 
     return render_template(
-        "admin.html",
+        "admin/admin.html",
         produtos=produtos,
         dashboard=dados,
         pesquisa=pesquisa
@@ -75,7 +75,7 @@ def novo_produto():
 
         return redirect(url_for("admin.painel"))
 
-    return render_template("novo_produto.html")
+    return render_template("admin/novo_produto.html")
 
 #Rota para editar um produto 
 
@@ -122,7 +122,7 @@ def editar_produto(id_produto):
         return redirect(url_for("admin.painel"))
 
     return render_template(
-        "editar_produto.html",
+        "admin/editar_produto.html",
         produto=produto
     )
 

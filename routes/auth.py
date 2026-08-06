@@ -36,11 +36,11 @@ def login():
                 return redirect("/admin")
 
         return render_template(
-            "login.html",
+            "auth/login.html",
             erro="Usuário ou senha inválidos."
         )
 
-    return render_template("login.html")
+    return render_template("auth/login.html")
 
 #Rota da pagina de logout
 
@@ -74,4 +74,4 @@ def cadastrar_administrador():
 
         return redirect("/login")
 
-    return render_template("cadastrar_admin.html")
+    return render_template("auth/cadastrar_admin.html")
