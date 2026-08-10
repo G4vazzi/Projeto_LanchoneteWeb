@@ -537,6 +537,12 @@ footer{
 
 }
 
+.container-form button:hover{
+
+    background:#c62828
+
+}
+
 .btn-excluir{
 
     background:#a30000;
@@ -1374,5 +1380,45 @@ footer{
     color:white;
     font-weight:bold;
     transform:scale(1.05);
+
+}
+
+.bnt-trocar-senha{
+
+    width:600px;
+
+    margin:50px auto;
+
+    background:white;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+
+}
+
+.bnt-trocar-senha button{
+
+    margin-left:200px;
+
+    padding:15px;
+
+    background:#b30000;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+.bnt-trocar-senha button:hover {
+
+    background: #c62828;
 
 }
