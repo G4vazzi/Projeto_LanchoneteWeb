@@ -12,18 +12,6 @@ body{
 
 }
 
-header{
-
-    background:#b30000;
-
-    color:white;
-
-    padding:30px;
-
-    text-align:center;
-
-}
-
 nav{
 
     background:#202020;
@@ -84,7 +72,7 @@ nav a:hover{
 
 button{
 
-    background:#b30000;
+    background:#B50801;
 
     color:white;
 
@@ -174,7 +162,7 @@ button:hover{
 
     font-weight:bold;
 
-    color:#b30000;
+    color:#B50801;
 
     margin-bottom:20px;
 
@@ -306,7 +294,7 @@ footer{
 
 .rodape-carrinho button{
 
-    background:#b30000;
+    background:#B50801;
 
     color:white;
 
@@ -525,7 +513,7 @@ footer{
 
     padding:15px;
 
-    background:#b30000;
+    background:#B50801;
 
     color:white;
 
@@ -976,54 +964,58 @@ footer{
 
 }
 
-.hero{
+.hero {
+    aspect-ratio: 16 / 9;
+    height: auto;
 
-    height:500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    display:flex;
+    text-align: center;
+    color: white;
 
-    justify-content:center;
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+        ),
+        url("../img/banner.png");
 
-    align-items:center;
-
-    text-align:center;
-
-    color:white;
-
-    background:linear-gradient(
-        rgba(0,0,0,.45),
-        rgba(0,0,0,.45)
-    ),
-    url("../uploads/banner.jpg");
-
-    background-size:cover;
-
-    background-position:center;
-
+    background-size: cover;
+    background-position: center 42%;
+    background-repeat: no-repeat;
 }
 
 .hero-conteudo{
 
     width:700px;
 
+
 }
 
 .hero h1{
 
-    font-size:60px;
+    font-size:58px;
+    font-weight: 800;
 
-    margin-bottom:20px;
+    color: white;
+
+    -webkit-text-stroke: 2px black;
+
+    text-shadow: 
+        3px 3px black
+        0 4px 10px rgba(0, 0, 0, 0.5);
 
 }
 
-.hero p{
+.hero p {
+    color: white;
 
-    font-size:22px;
+    -webkit-text-stroke: 0.5px black;
 
-    line-height:1.6;
-
-    margin-bottom:35px;
-
+    text-shadow:
+        1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .btn-hero{
@@ -1405,7 +1397,7 @@ footer{
 
     padding:15px;
 
-    background:#b30000;
+    background:#B50801;
 
     color:white;
 
