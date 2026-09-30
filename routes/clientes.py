@@ -58,7 +58,7 @@ def cadastro():
 
         flash("Conta criada com sucesso!")
 
-        return redirect(url_for("clientes.login"))
+        return redirect(url_for("clientes.cadastro"))
 
     return render_template(
         "clientes/cadastro.html"
