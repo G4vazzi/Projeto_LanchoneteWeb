@@ -1414,3 +1414,24 @@ footer{
     background: #c62828;
 
 }
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.conteudo-principal {
+    flex: 1;
+}
+
+footer {
+    width: 100%;
+}
